@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortowanie bąbelkowe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="column left">
+
+            <h1>Lista kroków</h1>
+            
+            <p>
+                1. Rozpocznij iterację po tablicy: <br> <br>
+
+                1.1. Zewnętrzna pętla iteruje przez wszystkie elementy tablicy. <br> <br>
+                2. Porównaj sąsiednie elementy: <br> <br>
+                
+                2.1. Dla każdego elementu porównaj go z następnym elementem (elementami w parze). <br> <br>
+                3. Wymień miejscami, jeśli w złej kolejności: <br> <br>
+                
+                3.1. Jeśli bieżący element jest większy niż następny, zamień je miejscami. <br> <br>
+                4. Powtarzaj krok 2 i 3: <br> <br>
+                
+                4.1. Dla każdej pary elementów wykonuj porównanie i zamianę, przesuwając największe elementy na koniec tablicy w każdej iteracji. <br><br> 
+                5. Zmniejsz zakres pętli wewnętrznej: <br> <br>
+                
+                5.1. Po każdej pełnej iteracji zewnętrznej pętli, elementy na końcu tablicy są już posortowane, więc zmniejszamy zakres wewnętrznej pętli. <br><br>
+                6. Zakończenie: <br><br>
+                
+                6.1. Algorytm kończy się, gdy tablica jest w pełni posortowana.<br>
+
+            </p>
+            
+
+        </div>
+
+        <div class="column center">
+            <pre>
+
+                <h1>Przykładowy kod:</h1>
+
+                public class Sortowanie {
+                    public static void babelkoweSort(int[] arr) {
+                        int n = arr.length;
+                        
+                        for (int i = 0; i < n - 1; i++) {
+                            for (int j = 0; j < n - 1 - i; j++) {
+                                if (arr[j] > arr[j + 1]) {
+                                    int temp = arr[j];
+                                    arr[j] = arr[j + 1];
+                                    arr[j + 1] = temp;
+                                }
+                            }
+                        }
+                    }
+                
+                    public static void printArray(int[] arr) {
+                        for (int i = 0; i < arr.length; i++) {
+                            System.out.print(arr[i] + " ");
+                        }
+                        System.out.println();
+                    }
+                
+                    public static void main(String[] args) {
+                        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+                
+                        System.out.println("Tablica przed posortowaniem:");
+                        printArray(arr);
+                
+                        babelkoweSort(arr);
+                
+                        System.out.println("Tablica po posortowaniu:");
+                        printArray(arr);
+                    }
+                }
+                
+            </pre>
+    
+        </div>
+
+        <div class="column right">
+            
+            <h2>Przykładowy schemat blokowy:</h2>
+
+            <img src="./obrazy/babelkowe.png" alt="schematblokowy">
+        </div>
+
+    </div>
+
+</body>
+</html>

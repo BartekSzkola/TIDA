@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortowanie szybkie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="column left">
+
+            <h1>Lista kroków</h1>
+            
+            <p>
+                1.Wybór pivota: <br> <br>
+
+                    1.1. Wybierz pivot (element, który będzie używany do podziału tablicy). <br>
+
+                    1.2. Najczęściej wybiera się element na końcu tablicy, ale można używać innych metod wyboru (np. środkowy element, losowy element). <br> <br>
+
+                2.Podział tablicy: <br> <br>
+                
+                    2.1. Rozpocznij od porównania elementów tablicy z pivotem. <br>
+
+                    2.2. Przesuwaj wskaźniki z lewej i prawej strony tablicy: <br>
+
+                        - Lewy wskaźnik: Przesuwaj w prawo, dopóki nie znajdziesz elementu większego od pivota. <br>
+
+                        - Prawy wskaźnik: Przesuwaj w lewo, dopóki nie znajdziesz elementu mniejszego od pivota. <br>
+
+                    2.3. Jeśli oba wskaźniki nie przekroczyły się, zamień te dwa elementy miejscami. <br> <br>
+
+
+                3. Zamiana pivota: <br> <br>
+                
+                    3.1. Po zakończeniu przesuwania wskaźników, zamień pivot z elementem na pozycji, do której dotarły wskaźniki. Pivot będzie teraz na właściwej pozycji, 
+                    a wszystkie elementy po lewej stronie są mniejsze, a po prawej większe. <br> <br>
+
+                4. Rekurencyjne sortowanie podtablic: <br> <br>
+                
+                    4.1. Teraz masz dwie podtablice: jedną zawierającą elementy mniejsze niż pivot, drugą zawierającą elementy większe niż pivot. <br>
+
+                    4.2. Rekurencyjnie wykonaj te same kroki dla obu podtablic (mniejszej i większej) aż do momentu, gdy tablica będzie już posortowana. <br>
+
+                    4.3. Przypadek bazowy: Jeśli tablica ma jeden element lub jest pusta, jest już posortowana. <br> <br>
+
+                5. Koniec algorytmu: <br> <br>
+                
+                    5.1. Algorytm kończy się, gdy wszystkie podtablice zostaną posortowane i cały zbiór danych będzie uporządkowany. <br>
+
+            </p>
+            
+
+        </div>
+
+        <div class="column center">
+            <pre>
+
+                <h1>Przykładowy kod:</h1>
+
+                public class Sortowanie {
+                    public static void szybkieSort(int[] arr, int low, int high) {
+                        if (low < high) {
+                            int pi = partition(arr, low, high);
+                
+                            quickSort(arr, low, pi - 1);
+                
+                            quickSort(arr, pi + 1, high);
+                        }
+                    }
+                
+                    public static int partition(int[] arr, int low, int high) {
+                        int pivot = arr[high];
+                        int i = (low - 1);
+                
+                        for (int j = low; j < high; j++) {
+                            if (arr[j] <= pivot) {
+                                i++;
+                                int temp = arr[i];
+                                arr[i] = arr[j];
+                                arr[j] = temp;
+                            }
+                        }
+                
+                        int temp = arr[i + 1];
+                        arr[i + 1] = arr[high];
+                        arr[high] = temp;
+                
+                        return i + 1;
+                    }
+                
+                    public static void printArray(int[] arr) {
+                        for (int i = 0; i < arr.length; i++) {
+                            System.out.print(arr[i] + " ");
+                        }
+                        System.out.println();
+                    }
+                
+                    public static void main(String[] args) {
+                        int[] arr = {64, 25, 12, 22, 11};
+                
+                        System.out.println("Tablica przed posortowaniem:");
+                        printArray(arr);
+                
+                        szybkieSort(arr, 0, arr.length - 1);
+                
+                        System.out.println("Tablica po posortowaniu:");
+                        printArray(arr);
+                    }
+                }
+                
+            </pre>
+    
+        </div>
+
+        <div class="column right">
+            
+            <h2>Przykładowy schemat blokowy:</h2>
+
+            <img src="./obrazy/szybkiSort.png" alt="schematblokowy">
+        </div>
+
+    </div>
+
+</body>
+</html>

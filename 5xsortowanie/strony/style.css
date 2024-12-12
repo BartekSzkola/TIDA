@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.column {
+    padding: 20px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.left {
+    width: 25%;
+}
+
+.center {
+    width: 50%;
+    text-align: left;
+}
+
+.right {
+    width: 25%;
+}
+
+p {
+    word-spacing: 2px;
+}

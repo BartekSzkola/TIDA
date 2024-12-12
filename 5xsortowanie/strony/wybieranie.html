@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortowanie przez wybieranie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="column left">
+
+            <h1>Lista kroków</h1>
+            
+            <p>
+                    1. Zacznij od pierwszego elementu w tablicy (indeks i = 0). <br> <br>
+
+                    2. Załóż, że bieżący element jest najmniejszy (zapisz jego indeks jako minIndex). <br> <br>
+
+                    3. Znajdź najmniejszy element w pozostałej części tablicy: <br>
+
+                        3.1. Porównaj element na pozycji minIndex z kolejnymi elementami (od indeksu i+1 do końca tablicy). <br>
+
+                        3.2. Jeśli znajdziesz element mniejszy niż bieżący najmniejszy, zaktualizuj minIndex na indeks nowego najmniejszego elementu. <br> <br>
+
+                    4. Zamień element na pozycji i z elementem na pozycji minIndex: <br> 
+
+                        4.1. Zamień te dwa elementy miejscami, tak aby najmniejszy element znalazł się na początku nieposortowanej części tablicy. <br> <br>
+
+                    5. Powtarzaj kroki 2–4 dla każdego elementu w tablicy (incremetuj i o 1). <br>
+
+                        5.1.Dla każdego kolejnego elementu w tablicy traktuj go jako początek nowej nieposortowanej części. <br> <br>
+
+                    6. Koniec – po przejściu przez całą tablicę, będziesz mieć tablicę posortowaną w porządku rosnącym.
+            </p>
+
+        </div>
+
+        <div class="column center">
+            <pre>
+
+                <h1>Przykładowy kod:</h1>
+
+                public class Sortowanie {
+                    public static void sortowanieWybieranie(int[] arr) {
+                        int n = arr.length;
+                
+                        for (int i = 0; i < n - 1; i++) {
+                            int minIndex = i;
+                
+                            for (int j = i + 1; j < n; j++) {
+                                if (arr[j] < arr[minIndex]) {
+                                    minIndex = j;
+                                }
+                            }
+                
+                            int temp = arr[minIndex];
+                            arr[minIndex] = arr[i];
+                            arr[i] = temp;
+                        }
+                    }
+                
+                    public static void printArray(int[] arr) {
+                        for (int i = 0; i < arr.length; i++) {
+                            System.out.print(arr[i] + " ");
+                        }
+                        System.out.println();
+                    }
+                
+                    public static void main(String[] args) {
+                        int[] arr = {64, 25, 12, 22, 11};
+                
+                        System.out.println("Tablica przed posortowaniem:");
+                        printArray(arr);
+                
+                        sortowanieWybieranie(arr);
+                
+                        System.out.println("Tablica po posortowaniu:");
+                        printArray(arr);
+                    }
+                }
+                
+            </pre>
+    
+        </div>
+
+        <div class="column right">
+            
+            <h2>Przykładowy schemat blokowy:</h2>
+
+            <img src="./obrazy/wybieranie.png" alt="schematblokowy">
+        </div>
+
+    </div>
+
+</body>
+</html>

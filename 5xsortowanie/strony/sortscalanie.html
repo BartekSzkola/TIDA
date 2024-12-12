@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortowanie przez scalanie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="column left">
+
+            <h1>Lista kroków</h1>
+            
+            <p>
+                1. Sprawdzenie warunku zakończenia: <br><br>
+
+                1.1. Jeśli tablica ma jeden element lub jest pusta (wszystkie podtablice mają tylko jeden element), algorytm kończy działanie dla tej podtablicy (to jest przypadek bazowy). <br> <br>
+
+                2. Dziel tablicę na dwie części: <br><br>
+                
+                2.1. Znajdź środek tablicy (np. (lewy indeks + prawy indeks) / 2). <br>
+                2.2. Podziel tablicę na dwie części: lewą (od indeksu lewy do middle) i prawą (od indeksu middle + 1 do prawy). <br><br>
+
+                3.Rekurencyjne sortowanie obu części: <br><br>
+                
+                3.1. Wywołaj algorytm rekurencyjnie dla lewej podtablicy (od lewy do middle). <br>
+                3.2. Wywołaj algorytm rekurencyjnie dla prawej podtablicy (od middle + 1 do prawy). <br><br>
+
+                4. Scalanie posortowanych podtablic:<br><br>
+                
+                4.1. Po posortowaniu obu podtablic, połącz je w jedną posortowaną tablicę.<br>
+                4.2. Utwórz dwie tymczasowe tablice, które przechowają elementy obu podtablic:<br>
+                 - Skopiuj elementy z lewej podtablicy do tymczasowej tablicy.<br>
+                 - Skopiuj elementy z prawej podtablicy do innej tymczasowej tablicy.<br>
+                4.3. Przechodź po obu tymczasowych tablicach, porównując elementy, i wstawiaj mniejsze elementy do głównej tablicy, aby połączyć je w jedną posortowaną tablicę.<br><br>
+
+                5. Kontynuowanie rekurencji dla innych podtablic:<br><br>
+                
+                5.1. Powtarzaj kroki 2–4 dla innych podtablic, aż cała tablica zostanie posortowana.<br><br>
+                
+                6. Zakończenie algorytmu:<br><br>
+                
+                6.1. Po zakończeniu rekurencyjnego dzielenia i scalania, tablica będzie posortowana w porządku rosnącym.<br>
+                
+
+            </p>
+            
+
+        </div>
+
+        <div class="column center">
+            <pre>
+
+                <h1>Przykładowy kod:</h1>
+                public class Sortowanie {
+                    public static void scalanieSort(int[] arr, int left, int right) {
+                        if (left < right) {
+                            int middle = (left + right) / 2;
+                            mergeSort(arr, left, middle);
+                            mergeSort(arr, middle + 1, right);
+                            merge(arr, left, middle, right);
+                        }
+                    }
+                    public static void merge(int[] arr, int left, int middle, int right) {
+                        int n1 = middle - left + 1;
+                        int n2 = right - middle;
+                        int[] leftArray = new int[n1];
+                        int[] rightArray = new int[n2];
+                        System.arraycopy(arr, left, leftArray, 0, n1);
+                        System.arraycopy(arr, middle + 1, rightArray, 0, n2);
+                        int i = 0, j = 0;
+                        int k = left;
+                        while (i < n1 && j < n2) {
+                            if (leftArray[i] <= rightArray[j]) {
+                                arr[k] = leftArray[i];
+                                i++;
+                            } else {
+                                arr[k] = rightArray[j];
+                                j++;
+                            }
+                            k++;
+                        }
+                        while (i < n1) {
+                            arr[k] = leftArray[i];
+                            i++;
+                            k++;
+                        }
+                        while (j < n2) {
+                            arr[k] = rightArray[j];
+                            j++;
+                            k++;
+                        }
+                    }
+                    public static void printArray(int[] arr) {
+                        for (int i = 0; i < arr.length; i++) {
+                            System.out.print(arr[i] + " ");
+                        }
+                        System.out.println();
+                    }
+                    public static void main(String[] args) {
+                        int[] arr = {38, 27, 43, 3, 9, 82, 10};
+                
+                        System.out.println("Tablica przed posortowaniem:");
+                        printArray(arr);
+                
+                        scalanieSort(arr, 0, arr.length - 1);
+                
+                        System.out.println("Tablica po posortowaniu:");
+                        printArray(arr);
+                    }
+                }
+            </pre>
+    
+        </div>
+
+        <div class="column right">
+            
+            <h2>Przykładowy schemat blokowy:</h2>
+
+            <img src="./obrazy/scalanie.png" alt="schematblokowy">
+        </div>
+
+    </div>
+
+</body>
+</html>

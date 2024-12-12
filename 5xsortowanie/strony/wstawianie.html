@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortowanie przez wstawianie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="column left">
+
+            <h1>Lista kroków</h1>
+            
+            <p>
+                    1. Zaczynamy od drugiego elementu (indeks 1) w tablicy, ponieważ pierwszy element jest już uważany za posortowany. <br> <br>
+
+                    2. Wybieramy bieżący element (klucz), który będziemy wstawiać w odpowiednie miejsce w posortowanej części tablicy. <br> <br>
+
+                    3. Przesuwamy elementy, które są większe od klucza, o jedno miejsce w prawo. Przesuwamy elementy, aż znajdziemy odpowiednią pozycję dla klucza. <br> <br>
+
+                    4. Wstawiamy klucz w znalezione miejsce. <br> <br>
+
+                    5. Powtarzamy kroki 2-4 dla każdego kolejnego elementu w tablicy, aż cała tablica będzie posortowana. <br>
+
+            </p>
+        
+        </div>
+
+        <div class="column center">
+            <pre>
+
+                <h1>Przykładowy kod:</h1>
+
+                public class Sortowanie {
+                    public static void sortowanieWstaw(int[] array) {
+                        for (int i = 1; i < array.length; i++) {
+                            int key = array[i];
+                            int j = i - 1;
+                
+                            while (j >= 0 && array[j] > key) {
+                                array[j + 1] = array[j];
+                                j--;
+                            }
+                            array[j + 1] = key;
+                        }
+                    }
+                
+                    public static void main(String[] args) {
+                        int[] array = {5, 2, 9, 1, 5, 6};
+                
+                        System.out.println("Przed sortowaniem:");
+                        for (int num : array) {
+                            System.out.print(num + " ");
+                        }
+                
+                        sortowanieWstaw(array);
+                
+                        System.out.println("\Po sortowaniu:");
+                        for (int num : array) {
+                            System.out.print(num + " ");
+                        }
+                    }
+                }
+            </pre>
+    
+        </div>
+
+        <div class="column right">
+            
+            <h2>Przykładowy schemat blokowy:</h2>
+
+            <img src="./obrazy/wstawianie.png" alt="schematblokowy">
+        </div>
+
+    </div>
+
+</body>
+</html>
